@@ -1,0 +1,54 @@
+id: ai-career-env
+name: AI Career Decision Environment
+description: >
+  A real-world environment where an AI agent interviews a user,
+  builds a profile, and recommends the best career decision.
+
+entrypoint: server.app:app
+
+environment:
+  action_space:
+    type: object
+    properties:
+      message:
+        type: string
+      action_type:
+        type: string
+        enum: ["ask", "recommend"]
+
+  observation_space:
+    type: object
+    properties:
+      scenario:
+        type: string
+      options:
+        type: array
+        items:
+          type: string
+      user_profile:
+        type: object
+      conversation_history:
+        type: array
+        items:
+          type: string
+      progress:
+        type: number
+      current_stage:
+        type: string
+      feedback:
+        type: string
+
+tasks:
+  - id: easy_task
+    description: Basic career decision for beginners
+    difficulty: easy
+  - id: medium_task
+    description: Mid-level career transition decision
+    difficulty: medium
+  - id: hard_task
+    description: Complex multi-option career decision
+    difficulty: hard
+
+metadata:
+  author: Faizan
+  version: 1.0
